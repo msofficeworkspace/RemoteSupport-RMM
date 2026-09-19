@@ -1,0 +1,7 @@
+Maintenance display fix
+- Agent confirms maintenance only after the local maintenance form is actually shown.
+- Server marks maintenance active only after that confirmation.
+- Dashboard displays "Maintenance screen displaying" while confirmed active.
+- Maintenance screen uses a continuous marquee progress bar with the requested text directly below it.
+- View/Control remain independent of maintenance state.
+- Closing a remote View/Control session no longer stops maintenance; MAINTENANCE_STOP is the normal stop command.
