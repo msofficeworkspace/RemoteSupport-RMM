@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: remotesupport-rmm
+    runtime: node
+    plan: free
+    numInstances: 1
+    buildCommand: cd server && npm ci && npm run build
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: TECHNICIAN_TOKEN
+        sync: false
+      - key: PUBLIC_BASE_URL
+        value: https://remotesupport-rmm.onrender.com

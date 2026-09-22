@@ -1,0 +1,14 @@
+V36 FINAL NOTES
+
+Installation core is preserved from the known-good RemoteSupport_RMM_FIXED_v36_BAT_STARTUP_FIX_CORRECTED pattern.
+
+- No installer progress callbacks are executed from the customer BAT.
+- BITS is used for the RemoteSupportAgent.exe download; no curl downloader is used.
+- UAC uses the existing PowerShell/RunAs BAT elevation pattern, with the elevated CMD child hidden.
+- Primary startup task remains the proven ONLOGON task using the installed EXE.
+- Installed agent is a WinExe and therefore starts without a console window.
+- A best-effort background recovery task is added after successful agent startup. It polls the server for technician CHECK requests and starts the agent if the process is missing.
+- The agent itself already reconnects indefinitely every 5 seconds after network loss, so a long internet outage does not permanently disable enrollment.
+- CHECK now reports reachable=false to the technician when the PC has no current agent connection; the dashboard displays TRY AGAIN LATER in that case. The request is still queued so a background recovery task can act once the PC can reach the server again.
+- Successful agent connection sets installation to 100% / Agent connected.
+- Installations older than 20 minutes that are still incomplete and offline are marked Pending enrollment and their progress is frozen.

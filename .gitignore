@@ -1,0 +1,12 @@
+node_modules/
+server/node_modules/
+server/dist/
+agent/bin/
+agent/obj/
+*.db
+*.db-shm
+*.db-wal
+.env
+.env.*
+!.env.example
+*.log
